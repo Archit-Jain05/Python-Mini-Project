@@ -1,5 +1,6 @@
 import tkinter as tk
 import tkinter.font as tkFont
+from tkinter import *
 
 class App:
     def __init__(self, root):
@@ -13,7 +14,7 @@ class App:
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
         root.geometry(alignstr)
         root.resizable(width=False, height=False)
-
+        
         GLabel_211=tk.Label(root)
         ft = tkFont.Font(family='Times',size=43)
         GLabel_211["font"] = ft
@@ -66,7 +67,8 @@ class App:
         GButton_703["fg"] = "#0038ff"
         GButton_703["justify"] = "center"
         GButton_703["text"] = "Dont have an Account? Sign up here."
-        GButton_703.place(x=350,y=360,width=250,height=30)
+        GButton_703["relief"] = "flat"
+        GButton_703.place(x=330,y=350,width=250,height=30)
         GButton_703["command"] = self.GButton_703_command
 
     def GButton_703_command(self):
