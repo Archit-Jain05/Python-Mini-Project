@@ -1,13 +1,12 @@
 import tkinter as tk
 import tkinter.font as tkFont
 from tkinter import *
-from register import *
 
 
-class Login:
+class Register:
     def __init__(self, root):
         #setting title
-        root.title("Login Page VIA News")
+        root.title("Register to VIA News")
         #setting window size
         width=900
         height=500
@@ -22,8 +21,8 @@ class Login:
         GLabel_211["font"] = ft
         GLabel_211["fg"] = "#ff0202"
         GLabel_211["justify"] = "center"
-        GLabel_211["text"] = "Login"
-        GLabel_211.place(x=380,y=20,width=151,height=81)
+        GLabel_211["text"] = "Register"
+        GLabel_211.place(x=355,y=20,width=200,height=81)
 
         GLabel_825=tk.Label(root)
         ft = tkFont.Font(family='Times',size=13)
@@ -61,33 +60,22 @@ class Login:
         GLineEdit_573["relief"] = "flat"
         GLineEdit_573.place(x=360,y=250,width=212,height=30)
 
-        GButton_703=tk.Button(root)
-        GButton_703["bg"] = "#f0f0f0"
-        GButton_703["borderwidth"] = "0px"
+        Loginredirect=tk.Button(root)
+        Loginredirect["bg"] = "#f0f0f0"
+        Loginredirect["borderwidth"] = "0px"
         ft = tkFont.Font(family='Times',size=10)
-        GButton_703["font"] = ft
-        GButton_703["fg"] = "#0038ff"
-        GButton_703["justify"] = "center"
-        GButton_703["text"] = "Dont have an Account? Sign up here."
-        GButton_703["relief"] = "flat"
-        GButton_703.place(x=330,y=350,width=250,height=30)
-        GButton_703["command"] = self.GButton_703_command
-
+        Loginredirect["font"] = ft
+        Loginredirect["fg"] = "#0038ff"
+        Loginredirect["justify"] = "center"
+        Loginredirect["text"] = "Have an Account? Sign in here."
+        Loginredirect["relief"] = "flat"
+        Loginredirect.place(x=330,y=350,width=250,height=30)
+        Loginredirect["command"] = self.Loginredirect_command
+	
     
 
-    def GButton_703_command(self):
-        rootlog.destroy()
-        rootreg=tk.Tk()
-        reg=Register(rootreg)
-        rootreg=Toplevel(reg)
-        rootreg.deiconify()
-        #r1=Toplevel(rootreg)
-        #register.launch()
+    def Loginredirect_command(self):
+        rootlog=tk.Tk()
         
-        
+	
 
-
-if __name__ == "__main__":
-    rootlog = tk.Tk()
-    app = Login(rootlog)
-    rootlog.mainloop()
