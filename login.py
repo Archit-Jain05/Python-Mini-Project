@@ -5,7 +5,7 @@ from tkinter import *
 class App:
     def __init__(self, root):
         #setting title
-        root.title("undefined")
+        root.title("Login Page VIA News")
         #setting window size
         width=900
         height=500
@@ -72,7 +72,11 @@ class App:
         GButton_703["command"] = self.GButton_703_command
 
     def GButton_703_command(self):
-        print("command")
+        global second
+        second = Toplevel()
+        second.title("Child Window")
+        second.geometry("400x400")
+
 
 if __name__ == "__main__":
     root = tk.Tk()
