@@ -3,20 +3,7 @@ import tkinter.font as tkFont
 from tkinter import *
 from tkinter import messagebox
 
-def launchLogin():
-    print("Login func")
-    if __name__ == "__main__":
-        rootlog = tk.Tk()
-        app = Login(rootlog)
-        rootlog.mainloop()
 
-def launchReg():
-    print("Create root reg")
-    '''rootreg = tk.Tk()
-    Reg1 = Register(rootreg)
-    rootreg.mainloop()'''
-    rootlog.withdraw()
-    rootreg.deiconify()
 
 
 
@@ -87,14 +74,13 @@ class Register:
         Loginredirect["text"] = "Have an Account? Sign in here."
         Loginredirect["relief"] = "flat"
         Loginredirect.place(x=330,y=350,width=250,height=30)
-        Loginredirect["command"] = self.Loginredirect_command
+        Loginredirect["command"] = self.Loginredirectbtn
 	
     
 
-    def Loginredirect_command(self):
+    def Loginredirectbtn(self):
         rootlog.deiconify()
         rootreg.withdraw()
-        #launchLogin()
         
 	
 
@@ -110,7 +96,8 @@ class Login:
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
         rootlog.geometry(alignstr)
         rootlog.resizable(width=False, height=False)
-        
+
+
         GLabel_211=tk.Label(rootlog)
         ft = tkFont.Font(family='Times',size=43)
         GLabel_211["font"] = ft
@@ -165,26 +152,23 @@ class Login:
         Regredirect["text"] = "Dont have an Account? Sign up here."
         Regredirect["relief"] = "flat"
         Regredirect.place(x=330,y=350,width=250,height=30)
-        Regredirect["command"] = self.Regredirect_command
+        Regredirect["command"] = self.Regredirectbtn
 
     
 
-    def Regredirect_command(self):
+    def Regredirectbtn(self):
         rootlog.withdraw()
-        launchReg()
+        rootreg.deiconify()
 
 
-
-
-print("First screen opened")
+##############################--Frame Creation--##############################################
 rootlog = tk.Tk()
 loginpage = Login(rootlog)
-
 rootreg = tk.Tk()
 registerpage=Register(rootreg) 
-
 rootreg.withdraw()
 
+##############################--Closing window--#############################################
 def on_closing():
     if messagebox.askyesno("Message Alert", "Do you want to quit?"):
         rootlog.destroy()
@@ -192,6 +176,7 @@ def on_closing():
 
 rootlog.protocol("WM_DELETE_WINDOW", on_closing)
 rootreg.protocol("WM_DELETE_WINDOW", on_closing)
+
 
 rootlog.mainloop()
 rootlog.mainloop()
