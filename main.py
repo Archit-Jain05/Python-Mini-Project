@@ -142,7 +142,7 @@ class Login:
         GLineEdit_573["relief"] = "flat"
         GLineEdit_573.place(x=360,y=250,width=212,height=30)
 
-        Regredirect=tk.Button(rootlog)
+        '''Regredirect=tk.Button(rootlog)
         Regredirect["bg"] = "#f0f0f0"
         Regredirect["borderwidth"] = "0px"
         ft = tkFont.Font(family='Times',size=10)
@@ -152,7 +152,7 @@ class Login:
         Regredirect["text"] = "Dont have an Account? Sign up here."
         Regredirect["relief"] = "flat"
         Regredirect.place(x=330,y=350,width=250,height=30)
-        Regredirect["command"] = self.Regredirectbtn
+        Regredirect["command"] = self.Regredirectbtn'''
 
     
 
