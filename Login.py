@@ -18,7 +18,7 @@ class Login:
         root.geometry(alignstr)
         root.resizable(width=True, height=True)
         root.bg="white"
-
+        root.iconbitmap("img1.ico")
         
 
         loginlabel=tk.Label(frame)
