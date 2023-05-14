@@ -1,5 +1,4 @@
 import tkinter as tk
-import tkinter.font as tkFont
 from tkinter import *
 from tkinter import messagebox
 import userdata
@@ -13,9 +12,11 @@ class Login:
         heading = Label(frame, text="LOGIN" , fg='#57a1f8' , bg='white' , font=("Microsoft YaHei UI Light" , 23 , 'bold'))
         heading.place(x=100,y=5)
 
+        
+
         usn=""
         passw=""
-
+        
         def on_enter(e):
             user.delete(0,'end')
         def on_leave(e):
@@ -23,6 +24,7 @@ class Login:
             if name=="":
                 user.insert(0,"Username")
 
+        
         user=Entry(frame,width=36,fg='black',border=0,bg='white',font=('Microsoft YaHei UI Light' , 11))
         user.place(x=30,y=80)
         user.insert(0,"Username")
@@ -47,17 +49,20 @@ class Login:
         code.bind('<FocusIn>' , on_enter)
         code.bind('<FocusOut>' , on_leave)
 
+
+
         f2=Frame(frame,width=295,height=2,bg='black').place(x=25,y=177)
 
+     
         #-------------------------------------
-        l1=Button(frame,width=39,pady=7,text="Sign in",bg='#57a1f8',fg='white',border=0,command=lambda:self.loginbtn_command(usn,passw,user,code)).place(x=35,y=204)
+        l1=Button(frame,width=39,pady=7,text="Sign in",bg='#57a1f8',fg='white',border=0,command=lambda:self.loginbtn_command(user,code)).place(x=35,y=204)
         label=Label(frame,text="Don't Have an Account?",fg='black',bg='white',font=("Microsoft YaHei UI Light" , 9))
         label.place(x=75,y=270)
 
         sign_up = Button(frame,width=6,text="Sign up",border=0 , bg='white',cursor='hand2',fg='#57a1f8',command=self.regredirect_command)
         sign_up.place(x=215,y=270)
 
-    
+        
         
     def regredirect_command(self):
         print("Register")
@@ -66,17 +71,13 @@ class Login:
         
         screen1=Register(root,frame)
   
-    def loginbtn_command(self,usn,passw,user,code):
-        print("Login")
+    def loginbtn_command(self,user,code):
         usn=user.get()
         passw=code.get()
-        print(usn)
-        print(passw)
         if userdata.validatelogin(usn,passw)==1:
             print("Succesful")
 
         else:
-            print("Failed")
             flag=messagebox.askretrycancel("Alert","Invalid Username/Password")
             
             if flag==False:
@@ -156,14 +157,14 @@ def on_closing():
     if messagebox.askokcancel("Quit", "Are you sure you want to exit?"):
         root.destroy()
 
+
+
 root.protocol("WM_DELETE_WINDOW", on_closing)
-#setting window size
-root.geometry('925x500+300+200')
+root.geometry('1535x1000+0+0')
 root.configure(bg="#fff")
 root.resizable(False,False)
 root.iconbitmap("img1.ico")
 img = PhotoImage(file='img1.png')
-
 frame = Frame(root, width=350,height=350,bg='white')
 frame.pack(fill="both")
 

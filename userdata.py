@@ -24,19 +24,17 @@ def getall():
     cur.execute("SELECT * FROM users")
     for row in cur:
         print(row)
+
 def printres(cur):
    for row in cur:
       print(row)
+
 def validateuser(usn):
     flag=0
     sql = "SELECT * FROM users WHERE username LIKE \""+usn+"\""
     cur.execute(sql)
     for row in cur:
        flag=1
-    if flag==1:
-       print("Valid username")
-    else:
-       print("Invalid username")
     return flag
 
 
@@ -46,12 +44,9 @@ def validatepass(password):
     cur.execute(sql)
     for row in cur:
        flag=1
-    if flag==1:
-       print("Valid Password")
-    else:
-       print("Invalid Password")
        return flag
     
+
 def validatelogin(usn,password):
    f1=validateuser(usn)
    flag=0
@@ -60,10 +55,7 @@ def validatelogin(usn,password):
       cur.execute(sql)
       for row in cur:
          flag=1
-      if flag==1:
-         print("Valid Password")
-      else:
-         print("Invalid Password")
+      if flag!=1:
          flag=0
    return flag
    
@@ -75,6 +67,8 @@ def newuser(username,password,age,country,opt):
     cur.execute(sql)
     print("Succesfull entry")
     conn.commit()
+
+
 def updateuser(username,password,age,country,opt):
     age=str(age)
     sql="UPDATE `users` SET `pass`='"+password+"',`age`="+age+",`country`='"+country+"',`politics`='"+opt[0]+"',`sports`='"+opt[1]+"',`entertainment`='"+opt[2]+"',`weather`='"+opt[3]+"',`crime`='"+opt[4]+"',`science and technology`='"+opt[5]+"',`wildlife`='"+opt[6]+"' WHERE username='"+username+"';"
@@ -83,12 +77,3 @@ def updateuser(username,password,age,country,opt):
     conn.commit()
     print("User updated")
 
-#opt=[1,1,1,1,1,1,1]
-#opt=list(map(lambda x: str(x),opt))
-#opt2=[0,0,0,0,0,0,0]
-#opt2=list(map(lambda x: str(x),opt2))
-#newuser("Archit","123",19,"India",opt)
-#getall()
-#updateuser("Archit","123",19,"India",opt2)
-#validateuser("Archit")
-#print(validatelogin("Archit","123"))
