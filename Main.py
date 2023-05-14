@@ -87,7 +87,6 @@ class Login:
             if flag==False:
                 root.destroy()
 
-
 class Register:
     def __init__(self,root,frame):
         root.title("Register to VIA News")
@@ -160,7 +159,6 @@ class Register:
         screen1=Login(root,frame)
 
 
-
 root=tk.Tk()
 def on_closing():
     if messagebox.askokcancel("Quit", "Are you sure you want to exit?"):
@@ -171,7 +169,7 @@ root.configure(bg="#fff")
 root.resizable(False,False)
 root.iconbitmap("img1.ico")
 img = PhotoImage(file='img1.png')
-frame = Frame(root, width=350,height=350,bg='white')
+frame = Frame(root,bg='white')
 frame.pack(fill="both")
 
 screen1=Login(root,frame)
