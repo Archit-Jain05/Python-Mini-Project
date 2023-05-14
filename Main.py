@@ -80,14 +80,16 @@ class Login:
     def loginbtn_command(user,code):
         usn=user.get()
         passw=code.get()
+        f.truncate(0)
         f.write("username:"+usn+"\npassword:"+passw)
         if userdata.validatelogin(usn,passw)==1:
             print("Succesful")
         else:
             flag=messagebox.askretrycancel("Alert","Invalid Username/Password")
-            
             if flag==False:
                 root.destroy()
+            f.truncate(0)
+            
 
 class Register:
     def __init__(self,root,frame):
@@ -176,3 +178,4 @@ frame.pack(fill="both")
 
 screen1=Login(root,frame)
 root.mainloop()
+f.close()
