@@ -12,10 +12,10 @@ except(mysql.connector.errors.InterfaceError):
    exit()
 
 if conn:
-   print("Connection Established Successfully")
+   print("Database Connection Established Successfully")
    pass
 else:
-   print("Connection Error")
+   print("Database Connection Error")
 
 
 cur=conn.cursor()
@@ -77,11 +77,4 @@ def updateuser(username,password,age,country,opt):
     conn.commit()
     print("User updated")
 
-
-datafile=open("datasheet.txt","w")
-datafile.truncate(0)
-cur.execute("SELECT * FROM users")
-for row in cur:
-   datafile.write(str(row))
-   print(row)
-datafile.close()
+conn.commit()

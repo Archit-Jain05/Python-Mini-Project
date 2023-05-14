@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 from UserDatabase import userdata
 from tkinter import font as tkFont
+import guiDashboard
 
 f=open("MyFiles/credentials.txt","a")
 
@@ -69,7 +70,7 @@ class Login:
         f2=Frame(frame,width=295,height=2,bg='black').place(x=25,y=177)
 
         def hit_enter(self):
-            Login.loginbtn_command(user,code)
+            Login.loginbtn_command(user,code,check)
         root.bind('<Return>', hit_enter)
         #-------------------------------------
         l1=Button(frame,width=39,pady=7,text="Sign in",bg='#57a1f8',fg='white',border=0,command=lambda:Login.loginbtn_command(user,code,check)).place(x=35,y=204)
@@ -93,23 +94,23 @@ class Login:
     
     def loginbtn_command(user,code,check):
         ssi=check.get()
-        print(ssi)
         usn=user.get()
         passw=code.get()
         if usn=="Username" and passw=="Password":
             f.truncate(0)
         else:
             if ssi==True:
+                f.truncate(0)
                 f.write("username:"+usn+"\npassword:"+passw)
         
         if userdata.validatelogin(usn,passw)==1:
             print("Succesful")
+            root.destroy()
+            guiDashboard.win()
         else:
             flag=messagebox.askretrycancel("Alert","Invalid Username/Password")
             if flag==False:
                 root.destroy()
-
-            
 
 class Register:
     def __init__(self,root,frame):
@@ -166,7 +167,7 @@ class Register:
             print("Register hit")
         root.bind('<Return>', hit_enter)
         #------------------------------
-        b2=Button(frame,width=39,pady=7,text="Sign Up",bg='#57a1f8',fg='white',border=0,command=self.nextbtn_command).place(x=35,y=280)
+        b2=Button(frame,width=39,pady=7,text="Next",bg='#57a1f8',fg='white',border=0,command=self.nextbtn_command).place(x=35,y=280)
         label1=Label(frame,text="I Have an Account!",fg='black',bg='white',font=("Microsoft YaHei UI Light" , 9))
         label1.place(x=90,y=340)
 
@@ -244,16 +245,18 @@ class Preferences(Register):
         print("show preference")
 
 
-root=tk.Tk()
+
 def on_closing():
     if messagebox.askokcancel("Quit", "Are you sure you want to exit?"):
         root.destroy()
-root.protocol("WM_DELETE_WINDOW", on_closing)
+
 
 f2=open("MyFiles/credentials.txt","r")
 cont=f2.read()
 print(cont)
 if cont=="":
+    root=tk.Tk()
+    root.protocol("WM_DELETE_WINDOW", on_closing)
     root.geometry('900x500+300+200')
     root.configure(bg="#fff")
     root.resizable(False,False)
@@ -262,5 +265,8 @@ if cont=="":
     frame = Frame(root,bg='white')
     frame.pack(fill="both")
     screen1=Login(root,frame)
-root.mainloop()
+    root.mainloop()
+else:
+    guiDashboard.win()
 f.close()
+
