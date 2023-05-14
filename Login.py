@@ -1,7 +1,7 @@
 import tkinter as tk
 import tkinter.font as tkFont
 from tkinter import *
-
+from tkinter import messagebox
 
 
 class Login:
@@ -203,6 +203,11 @@ class Register:
 
 
 root=tk.Tk()
+def on_closing():
+    if messagebox.askokcancel("Quit", "Do you want to quit?"):
+        root.destroy()
+
+root.protocol("WM_DELETE_WINDOW", on_closing)
 frame = tk.Frame(root,width=900,height=400)
 frame.pack(fill="both")
 screen1=Login(root,frame)

@@ -1,17 +1,22 @@
 import mysql.connector
 
-conn = mysql.connector.connect(
+try:
+   conn = mysql.connector.connect(
   host="localhost",
   user="root",
   password="",
   database="vianewscredentials"
 )
+except(mysql.connector.errors.InterfaceError):
+   print("Cannot establish connection")
+   exit()
 
 if conn:
-  #print("Connection Established Successfully")
-  pass
+   print("Connection Established Successfully")
+   pass
 else:
-  print("Connection Error")
+   print("Connection Error")
+
 
 cur=conn.cursor()
 
@@ -29,13 +34,15 @@ def validateuser(usn):
     for row in cur:
        flag=1
     if flag==1:
-       print("Valid")
+       print("Valid username")
     else:
-       print("Invalid")
+       print("Invalid username")
     return flag
+
+
 def validatepass(password):
     flag=0
-    sql = "SELECT * FROM users WHERE username LIKE \""+password+"\""
+    sql = "SELECT * FROM users WHERE pass LIKE \""+password+"\";"
     cur.execute(sql)
     for row in cur:
        flag=1
@@ -44,6 +51,23 @@ def validatepass(password):
     else:
        print("Invalid Password")
        return flag
+    
+def validatelogin(usn,password):
+   f1=validateuser(usn)
+   flag=0
+   if f1==1:  
+      sql = "SELECT * FROM users WHERE pass LIKE \""+password+"\" and username LIKE \""+usn+"\";"
+      cur.execute(sql)
+      for row in cur:
+         flag=1
+      if flag==1:
+         print("Valid Password")
+      else:
+         print("Invalid Password")
+         flag=0
+   return flag
+   
+
 def newuser(username,password,age,country,opt):
     age=str(age)
     sql="INSERT INTO users VALUES(\""+username+"\",\""+password+"\","+age+",\""+country+"\","+opt[0]+","+opt[1]+","+opt[2]+","+opt[3]+","+opt[4]+","+opt[5]+","+opt[6]+");"
@@ -59,10 +83,12 @@ def updateuser(username,password,age,country,opt):
     conn.commit()
     print("User updated")
 
-opt=[1,1,1,1,1,1,1]
-opt=list(map(lambda x: str(x),opt))
-opt2=[0,0,0,0,0,0,0]
-opt2=list(map(lambda x: str(x),opt2))
+#opt=[1,1,1,1,1,1,1]
+#opt=list(map(lambda x: str(x),opt))
+#opt2=[0,0,0,0,0,0,0]
+#opt2=list(map(lambda x: str(x),opt2))
 #newuser("Archit","123",19,"India",opt)
 #getall()
-updateuser("Archit","123",19,"India",opt2)
+#updateuser("Archit","123",19,"India",opt2)
+#validateuser("Archit")
+#print(validatelogin("Archit","123"))
