@@ -107,6 +107,7 @@ class Login:
             print("Succesful")
             root.destroy()
             guiDashboard.win()
+            exit()
         else:
             flag=messagebox.askretrycancel("Alert","Invalid Username/Password")
             if flag==False:
@@ -163,9 +164,14 @@ class Register:
         confirm_code.bind('<FocusOut>' , on_leave)
         Frame(frame,width=295,height=2,bg='black').place(x=25,y=247)
 
-        def hit_enter(self):
-            print("Register hit")
-        root.bind('<Return>', hit_enter)
+
+        def nextbtn_command(self):
+            pass
+
+        def hit_enter2(self):
+            pass
+        
+        root.bind('<Return>', hit_enter2)
         #------------------------------
         b2=Button(frame,width=39,pady=7,text="Next",bg='#57a1f8',fg='white',border=0,command=self.nextbtn_command).place(x=35,y=280)
         label1=Label(frame,text="I Have an Account!",fg='black',bg='white',font=("Microsoft YaHei UI Light" , 9))
@@ -174,8 +180,9 @@ class Register:
         signin = Button(frame,width=6,text="Sign In",border=0 , bg='white',cursor='hand2',fg='#57a1f8',command=self.loginredirect_command)
         signin.place(x=200,y=340)
         
-    def nextbtn_command(self):
-        pass
+
+
+    
 
     def loginredirect_command(self):
         print("Login btn")
@@ -183,8 +190,14 @@ class Register:
             widgets.destroy()
         screen1=Login(root,frame)
 
+
+        
 class Preferences(Register):
+    def hit_enter2(self):
+        self.nextbtn_command()
     def nextbtn_command(self):
+        a=super().getdata()
+        print(a)
         root.title("Set Your Preferences")
         l1=Label(root,image=img, bg='white').place(x=48,y=-2)
         frame = Frame(root, width=350,height=450,bg='white')
@@ -240,10 +253,12 @@ class Preferences(Register):
         root.bind('<Return>', hit_enter)
         #-------------------------------------
         l1=Button(frame,width=20,pady=7,text="Next",bg='#57a1f8',fg='white',border=0,command=self.next_btn).place(x=200,y=300)
-
+        l2=Button(frame,width=20,pady=7,text="Previous",bg='#57a1f8',fg='white',border=0,command=self.prev_btn).place(x=20,y=300)
     def next_btn(self):
         print("show preference")
-
+        
+    def prev_btn(self):
+        super().__init__(root,frame)
 
 
 def on_closing():

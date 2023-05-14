@@ -4,13 +4,14 @@ from datetime import *
 import datetime 
 from tkinter import messagebox
 import tkinter as tk
+
 class Dashboard:
     def __init__(self, window):
         self.window = window
         self.window.title("VIA News Dashboard")
         self.window.geometry("1366x768")
         self.window.state("zoomed")
-        self.window.config(background = '#eff5f6')
+        self.window.config(background = '#5c6169')
 
         #window icon photo
         
