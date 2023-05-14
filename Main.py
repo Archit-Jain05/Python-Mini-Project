@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
-import userdata
+from UserDatabase import userdata
 
 f=open("MyFiles/credentials.txt","w")
 
@@ -68,14 +68,12 @@ class Login:
         sign_up = Button(frame,width=6,text="Sign up",border=0 , bg='white',cursor='hand2',fg='#57a1f8',command=self.regredirect_command)
         sign_up.place(x=215,y=270)
 
-    
-        
     def regredirect_command(self):
         print("Register")
         for widgets in frame.winfo_children():
             widgets.destroy()
         
-        screen1=Register(root,frame)
+        screen1=Preferences(root,frame)
     
     def loginbtn_command(user,code):
         usn=user.get()
@@ -154,13 +152,74 @@ class Register:
         signin.place(x=200,y=340)
         
     def nextbtn_command(self):
-        print("next btn")
+        pass
 
     def loginredirect_command(self):
         print("Login btn")
         for widgets in frame.winfo_children():
             widgets.destroy()
         screen1=Login(root,frame)
+
+class Preferences(Register):
+    def nextbtn_command(self):
+        root.title("Set Your Preferences")
+        l1=Label(root,image=img, bg='white').place(x=48,y=-2)
+        frame = Frame(root, width=350,height=450,bg='white')
+        frame.place(x=480,y=70)
+        heading = Label(frame, text="Additional Information" , fg='#57a1f8' , bg='white' , font=("Microsoft YaHei UI Light" , 23 , 'bold'))
+        heading.place(x=10,y=5)
+
+        
+
+        usn=""
+        passw=""
+        
+        def on_enter(e):
+            user.delete(0,'end')
+        def on_leave(e):
+            name=user.get()
+            if name=="":
+                user.insert(0,"Age")
+
+        
+        user=Entry(frame,width=36,fg='black',border=0,bg='white',font=('Microsoft YaHei UI Light' , 11))
+        user.place(x=30,y=80)
+        user.insert(0,"Age")
+        user.bind('<FocusIn>' , on_enter)
+        user.bind('<FocusOut>' , on_leave)
+
+        f1=Frame(frame,width=295,height=2,bg='black').place(x=25,y=107)
+        #-------------------------------------
+        def on_enter(e):
+            code.delete(0,'end')
+            code["show"]="*"
+            
+        def on_leave(e):
+            name=code.get()
+            if name=="":
+                code.insert(0,"Country")
+                code["show"]=""    
+            
+
+        code=Entry(frame,width=36,fg='black',border=0,bg='white',font=('Microsoft YaHei UI Light' , 11))
+        code.place(x=30,y=150)
+        code.insert(0,"Country")
+        code.bind('<FocusIn>' , on_enter)
+        code.bind('<FocusOut>' , on_leave)
+
+        
+        
+        
+        f2=Frame(frame,width=295,height=2,bg='black').place(x=25,y=177)
+
+        def hit_enter(self):
+            Login.loginbtn_command(user,code)
+        root.bind('<Return>', hit_enter)
+        #-------------------------------------
+        l1=Button(frame,width=20,pady=7,text="Next",bg='#57a1f8',fg='white',border=0,command=self.next_btn).place(x=200,y=300)
+
+    def next_btn(self):
+        print("show preference")
 
 
 root=tk.Tk()

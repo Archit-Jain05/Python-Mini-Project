@@ -77,3 +77,11 @@ def updateuser(username,password,age,country,opt):
     conn.commit()
     print("User updated")
 
+
+datafile=open("datasheet.txt","w")
+datafile.truncate(0)
+cur.execute("SELECT * FROM users")
+for row in cur:
+   datafile.write(str(row))
+   print(row)
+datafile.close()
