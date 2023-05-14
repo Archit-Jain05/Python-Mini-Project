@@ -49,20 +49,24 @@ class Login:
         code.bind('<FocusIn>' , on_enter)
         code.bind('<FocusOut>' , on_leave)
 
-
-
+        
+        
+        
         f2=Frame(frame,width=295,height=2,bg='black').place(x=25,y=177)
 
-     
+        def hit_enter(self):
+            Login.loginbtn_command(user,code)
+        root.bind('<Return>', hit_enter)
         #-------------------------------------
-        l1=Button(frame,width=39,pady=7,text="Sign in",bg='#57a1f8',fg='white',border=0,command=lambda:self.loginbtn_command(user,code)).place(x=35,y=204)
+        l1=Button(frame,width=39,pady=7,text="Sign in",bg='#57a1f8',fg='white',border=0,command=lambda:Login.loginbtn_command(user,code)).place(x=35,y=204)
+
         label=Label(frame,text="Don't Have an Account?",fg='black',bg='white',font=("Microsoft YaHei UI Light" , 9))
         label.place(x=75,y=270)
 
         sign_up = Button(frame,width=6,text="Sign up",border=0 , bg='white',cursor='hand2',fg='#57a1f8',command=self.regredirect_command)
         sign_up.place(x=215,y=270)
 
-        
+    
         
     def regredirect_command(self):
         print("Register")
@@ -70,8 +74,8 @@ class Login:
             widgets.destroy()
         
         screen1=Register(root,frame)
-  
-    def loginbtn_command(self,user,code):
+    
+    def loginbtn_command(user,code):
         usn=user.get()
         passw=code.get()
         if userdata.validatelogin(usn,passw)==1:
@@ -83,6 +87,7 @@ class Login:
             if flag==False:
                 root.destroy()
 
+
 class Register:
     def __init__(self,root,frame):
         root.title("Register to VIA News")
@@ -92,6 +97,8 @@ class Register:
         heading = Label(frame, text="SIGN UP" , fg='#57a1f8' , bg='white' , font=("Microsoft YaHei UI Light" , 23 , 'bold'))
         heading.place(x=100,y=5)
 
+        self.username=self.password=self.country=self.age=""
+        self.pref=[]
 
         def on_enter(e):
             user.delete(0,'end')
@@ -131,6 +138,10 @@ class Register:
         confirm_code.bind('<FocusIn>' , on_enter)
         confirm_code.bind('<FocusOut>' , on_leave)
         Frame(frame,width=295,height=2,bg='black').place(x=25,y=247)
+
+        def hit_enter(self):
+            print("Register hit")
+        root.bind('<Return>', hit_enter)
         #------------------------------
         b2=Button(frame,width=39,pady=7,text="Sign Up",bg='#57a1f8',fg='white',border=0,command=self.nextbtn_command).place(x=35,y=280)
         label1=Label(frame,text="I Have an Account!",fg='black',bg='white',font=("Microsoft YaHei UI Light" , 9))
@@ -139,7 +150,6 @@ class Register:
         signin = Button(frame,width=6,text="Sign In",border=0 , bg='white',cursor='hand2',fg='#57a1f8',command=self.loginredirect_command)
         signin.place(x=200,y=340)
         
-
     def nextbtn_command(self):
         print("next btn")
 
@@ -151,16 +161,12 @@ class Register:
 
 
 
-
 root=tk.Tk()
 def on_closing():
     if messagebox.askokcancel("Quit", "Are you sure you want to exit?"):
         root.destroy()
-
-
-
 root.protocol("WM_DELETE_WINDOW", on_closing)
-root.geometry('1535x1000+0+0')
+root.geometry('900x500+300+200')
 root.configure(bg="#fff")
 root.resizable(False,False)
 root.iconbitmap("img1.ico")
