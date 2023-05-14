@@ -3,6 +3,8 @@ from tkinter import *
 from tkinter import messagebox
 import userdata
 
+f=open("MyFiles/credentials.txt","w")
+
 class Login:
     def __init__(self,root,frame):
         root.title("Login to VIA News")
@@ -78,9 +80,9 @@ class Login:
     def loginbtn_command(user,code):
         usn=user.get()
         passw=code.get()
+        f.write("username:"+usn+"\npassword:"+passw)
         if userdata.validatelogin(usn,passw)==1:
             print("Succesful")
-
         else:
             flag=messagebox.askretrycancel("Alert","Invalid Username/Password")
             
@@ -167,8 +169,8 @@ root.protocol("WM_DELETE_WINDOW", on_closing)
 root.geometry('900x500+300+200')
 root.configure(bg="#fff")
 root.resizable(False,False)
-root.iconbitmap("img1.ico")
-img = PhotoImage(file='img1.png')
+root.iconbitmap("Images/img1.ico")
+img = PhotoImage(file='Images/img1.png')
 frame = Frame(root,bg='white')
 frame.pack(fill="both")
 
