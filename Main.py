@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import *
 from tkinter import messagebox
 from UserDatabase import userdata
+from tkinter import font as tkFont
 
 f=open("MyFiles/credentials.txt","a")
 
@@ -52,7 +53,18 @@ class Login:
         code.bind('<FocusOut>' , on_leave)
 
         
-        
+        check=tk.BooleanVar()
+        GCheckBox_500=tk.Checkbutton(frame,variable=check)
+        ft = tkFont.Font(family='Microsoft YaHei UI Light',size=12)
+        GCheckBox_500["font"] = ft
+        GCheckBox_500["fg"] = "#000000"
+        GCheckBox_500["bg"] = "white"
+        GCheckBox_500["justify"] = "center"
+        GCheckBox_500["text"] = "Stay signed in"
+        GCheckBox_500.place(x=80,y=300,width=172,height=40)
+        GCheckBox_500["offvalue"] = "0"
+        GCheckBox_500["onvalue"] = "1"
+        GCheckBox_500["command"] = lambda:self.GCheckBox_500_command(check)
         
         f2=Frame(frame,width=295,height=2,bg='black').place(x=25,y=177)
 
@@ -60,25 +72,36 @@ class Login:
             Login.loginbtn_command(user,code)
         root.bind('<Return>', hit_enter)
         #-------------------------------------
-        l1=Button(frame,width=39,pady=7,text="Sign in",bg='#57a1f8',fg='white',border=0,command=lambda:Login.loginbtn_command(user,code)).place(x=35,y=204)
+        l1=Button(frame,width=39,pady=7,text="Sign in",bg='#57a1f8',fg='white',border=0,command=lambda:Login.loginbtn_command(user,code,check)).place(x=35,y=204)
 
         label=Label(frame,text="Don't Have an Account?",fg='black',bg='white',font=("Microsoft YaHei UI Light" , 9))
         label.place(x=75,y=270)
 
         sign_up = Button(frame,width=6,text="Sign up",border=0 , bg='white',cursor='hand2',fg='#57a1f8',command=self.regredirect_command)
         sign_up.place(x=215,y=270)
+        
+
+    def GCheckBox_500_command(self,check):
+        ssi=check.get()
+        print(ssi)
 
     def regredirect_command(self):
         print("Register")
         for widgets in frame.winfo_children():
             widgets.destroy()
-        
         screen1=Preferences(root,frame)
     
-    def loginbtn_command(user,code):
+    def loginbtn_command(user,code,check):
+        ssi=check.get()
+        print(ssi)
         usn=user.get()
         passw=code.get()
-        f.write("username:"+usn+"\npassword:"+passw)
+        if usn=="Username" and passw=="Password":
+            f.truncate(0)
+        else:
+            if ssi==True:
+                f.write("username:"+usn+"\npassword:"+passw)
+        
         if userdata.validatelogin(usn,passw)==1:
             print("Succesful")
         else:
