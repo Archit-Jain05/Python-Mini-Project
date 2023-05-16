@@ -3,13 +3,14 @@ from tkinter import *
 from tkinter import messagebox
 from UserDatabase import userdata
 from tkinter import font as tkFont
-import guiDashboard
+#import guiDashboard
 
 f=open("MyFiles/credentials.txt","a")
 
 class Login:
     def __init__(self,root,frame):
         root.title("Login to VIA News")
+
         l1=Label(root,image=img, bg='white').place(x=48,y=-2)
         frame = Frame(root, width=350,height=390,bg='white')
         frame.place(x=480,y=70)
@@ -108,6 +109,7 @@ class Login:
         if userdata.validatelogin(usn,passw)==1:
             print("Succesful")
             root.destroy()
+            import guiDashboard
             guiDashboard.win()
             exit()
         else:
@@ -343,6 +345,7 @@ class Preferences(Register):
 
         def finish_command():
             root.destroy()
+            import guiDashboard
             guiDashboard.win()
             exit()
 
@@ -409,12 +412,14 @@ if cont=="":
     root.configure(bg="#fff")
     root.resizable(False,False)
     root.iconbitmap("Images/img1.ico")
-    img = PhotoImage(file='Images/img1.png')
+    img = PhotoImage(file='Images/mainimg.png')
     frame = Frame(root,bg='white')
     frame.pack(fill="both")
     screen1=Login(root,frame)
     root.mainloop()
 else:
+    import guiDashboard
     guiDashboard.win()
+
 f.close()
 

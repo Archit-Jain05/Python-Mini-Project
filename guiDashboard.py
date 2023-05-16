@@ -256,7 +256,7 @@ class Homepage:
 
         #window icon photo
         
-        icon = PhotoImage(file='Images\\img1.png')
+        icon = PhotoImage(file='Images//img1.png')
         self.window.iconphoto(True, icon)
 
         #===================================================
@@ -273,12 +273,13 @@ class Homepage:
 
         self.header = Frame(self.window , bg = '#A2C7E5')
         self.header.place(x=0 , y=0 , width=2000, height=60)
-        self.accImage = Image.open('Images\\img1.png')
+        self.accImage = Image.open('Images/img1.png')
         resize_image = self.accImage.resize((60,60))
         photo = ImageTk.PhotoImage(resize_image)
         self.logo = Button(self.header , image=photo , bg='#ffffff',border=0,command=lambda:dash(window))
         self.logo.image = photo
         self.logo.place(x=0 , y=0)
+        self.accImage.close()
 
         ft = tkFont.Font(family='Microsoft YaHei UI Light',size=16)
         self.header1=Label(self.header,text="VIA News",font=ft,bg="#A2C7E5")
@@ -313,7 +314,6 @@ def on_closing(window):
         window.destroy()
 
 def win():
-
     window.protocol("WM_DELETE_WINDOW", lambda:on_closing(window))
     sc1=Homepage(window)
     window.mainloop()

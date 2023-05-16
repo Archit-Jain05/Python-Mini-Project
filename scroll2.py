@@ -5,8 +5,7 @@ from scrollframe import *
 root = tk.Tk()
 scrollable_frame = ScrollableFrame(root)
 scrollable_frame.pack(fill="both", expand=True)
-
 for i in range(50):
-    tk.Label(scrollable_frame.scrollable_frame_frame, text=f"Label {i}").pack()
+    tk.Frame(scrollable_frame.scrollable_frame_frame,pady=20,width=20,height=20).pack()
     
 root.mainloop()
