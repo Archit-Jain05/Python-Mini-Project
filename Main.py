@@ -84,7 +84,7 @@ class Login:
 
     def GCheckBox_500_command(self,check):
         ssi=check.get()
-        print(ssi)
+        #print(ssi)
 
     def regredirect_command(self):
         print("Register")
@@ -93,6 +93,7 @@ class Login:
         screen1=Preferences(root,frame)
     
     def loginbtn_command(user,code,check):
+        f=open("MyFiles/credentials.txt","w")
         ssi=check.get()
         usn=user.get()
         passw=code.get()
@@ -100,9 +101,10 @@ class Login:
             f.truncate(0)
         else:
             if ssi==True:
+                
                 f.truncate(0)
-                f.write("username:"+usn+"\npassword:"+passw)
-        
+                f.write(usn+"\n"+passw)
+        f.close()
         if userdata.validatelogin(usn,passw)==1:
             print("Succesful")
             root.destroy()
@@ -195,9 +197,10 @@ class Register:
 class Preferences(Register):
     def hit_enter2(self):
         self.nextbtn_command()
+
     def nextbtn_command(self):
-        a=super().getdata()
-        print(a)
+        #a=super().getdata()
+        #print(a)
         root.title("Set Your Preferences")
         l1=Label(root,image=img, bg='white').place(x=48,y=-2)
         frame = Frame(root, width=350,height=450,bg='white')
@@ -254,8 +257,138 @@ class Preferences(Register):
         #-------------------------------------
         l1=Button(frame,width=20,pady=7,text="Next",bg='#57a1f8',fg='white',border=0,command=self.next_btn).place(x=200,y=300)
         l2=Button(frame,width=20,pady=7,text="Previous",bg='#57a1f8',fg='white',border=0,command=self.prev_btn).place(x=20,y=300)
+
+    
+
     def next_btn(self):
         print("show preference")
+        root.title("Set Your Preferences")
+        l1=Label(root,image=img, bg='white').place(x=48,y=-2)
+        frame = Frame(root, width=350,height=450,bg='white')
+        frame.place(x=480,y=70)
+        heading = Label(frame, text="Select News Preferences" , fg='#57a1f8' , bg='white' , font=("Microsoft YaHei UI Light" , 22 , 'bold'))
+        heading.place(x=0,y=5)
+
+        GCheckBox_463=tk.Checkbutton(frame)
+        ft = tkFont.Font(family='Microsoft YaHei UI Light',size=12)
+        GCheckBox_463["font"] = ft
+        GCheckBox_463["fg"] = "#333333"
+        GCheckBox_463["bg"] = "white"
+        GCheckBox_463["justify"] = "center"
+        GCheckBox_463["text"] = "Sports"
+        GCheckBox_463.place(x=15,y=100)
+        GCheckBox_463["offvalue"] = "0"
+        GCheckBox_463["onvalue"] = "1"
+        GCheckBox_463["command"] = self.GCheckBox_463_command
+
+        GCheckBox_830=tk.Checkbutton(frame)
+        ft = tkFont.Font(family='Microsoft YaHei UI Light',size=12)
+        GCheckBox_830["font"] = ft
+        GCheckBox_830["fg"] = "#333333"
+        GCheckBox_830["bg"] = "white"
+        GCheckBox_830["justify"] = "center"
+        GCheckBox_830["text"] = "Entertainment"
+        GCheckBox_830.place(x=15,y=140)
+        GCheckBox_830["offvalue"] = "0"
+        GCheckBox_830["onvalue"] = "1"
+        GCheckBox_830["command"] = self.GCheckBox_830_command
+
+        GCheckBox_917=tk.Checkbutton(frame)
+        ft = tkFont.Font(family='Microsoft YaHei UI Light',size=12)
+        GCheckBox_917["font"] = ft
+        GCheckBox_917["fg"] = "#333333"
+        GCheckBox_917["bg"] = "white"
+        GCheckBox_917["justify"] = "center"
+        GCheckBox_917["text"] = "Weather"
+        GCheckBox_917.place(x=15,y=180)
+        GCheckBox_917["offvalue"] = "0"
+        GCheckBox_917["onvalue"] = "1"
+        GCheckBox_917["command"] = self.GCheckBox_917_command
+
+        GCheckBox_510=tk.Checkbutton(frame)
+        ft = tkFont.Font(family='Microsoft YaHei UI Light',size=12)
+        GCheckBox_510["font"] = ft
+        GCheckBox_510["fg"] = "#333333"
+        GCheckBox_510["bg"] = "white"
+        GCheckBox_510["justify"] = "center"
+        GCheckBox_510["text"] = "Crime"
+        GCheckBox_510.place(x=15,y=220)
+        GCheckBox_510["offvalue"] = "0"
+        GCheckBox_510["onvalue"] = "1"
+        GCheckBox_510["command"] = self.GCheckBox_510_command
+
+        GCheckBox_698=tk.Checkbutton(frame)
+        ft = tkFont.Font(family='Microsoft YaHei UI Light',size=12)
+        GCheckBox_698["font"] = ft
+        GCheckBox_698["fg"] = "#333333"
+        GCheckBox_698["bg"] = "white"
+        GCheckBox_698["justify"] = "center"
+        GCheckBox_698["text"] = "Science and Technology"
+        GCheckBox_698.place(x=15,y=260)
+        GCheckBox_698["offvalue"] = "0"
+        GCheckBox_698["onvalue"] = "1"
+        GCheckBox_698["command"] = self.GCheckBox_698_command
+
+        GCheckBox_598=tk.Checkbutton(frame)
+        ft = tkFont.Font(family='Microsoft YaHei UI Light',size=12)
+        GCheckBox_598["font"] = ft
+        GCheckBox_598["fg"] = "#333333"
+        GCheckBox_598["bg"] = "white"
+        GCheckBox_598["justify"] = "center"
+        GCheckBox_598["text"] = "Wildlife"
+        GCheckBox_598.place(x=15,y=300)
+        GCheckBox_598["offvalue"] = "0"
+        GCheckBox_598["onvalue"] = "1"
+        GCheckBox_598["command"] = self.GCheckBox_598_command
+
+        def finish_command():
+            root.destroy()
+            guiDashboard.win()
+            exit()
+
+        GCheckBox_851=tk.Checkbutton(frame)
+        ft = tkFont.Font(family='Microsoft YaHei UI Light',size=12)
+        GCheckBox_851["font"] = ft
+        GCheckBox_851["fg"] = "#333333"
+        GCheckBox_851["bg"] = "white"
+        GCheckBox_851["justify"] = "center"
+        GCheckBox_851["text"] = "Politics"
+        GCheckBox_851.place(x=15,y=60)
+        GCheckBox_851["offvalue"] = "0"
+        GCheckBox_851["onvalue"] = "1"
+        GCheckBox_851["command"] = self.GCheckBox_851_command
+        ft = tkFont.Font(family='Microsoft YaHei UI Light',size=12)
+        finish = Button(frame,width=15,text="Finish Sign Up",border=0 , bg='white',cursor='hand2',fg='#57a1f8',font=ft,command=finish_command)
+        finish.place(x=200,y=340)
+
+    
+    def GCheckBox_463_command(self):
+        print("command")
+
+
+    def GCheckBox_830_command(self):
+        print("command")
+
+
+    def GCheckBox_917_command(self):
+        print("command")
+
+
+    def GCheckBox_510_command(self):
+        print("command")
+
+
+    def GCheckBox_698_command(self):
+        print("command")
+
+
+    def GCheckBox_598_command(self):
+        print("command")
+
+
+    def GCheckBox_851_command(self):
+        print("command")
+
         
     def prev_btn(self):
         super().__init__(root,frame)
@@ -268,7 +401,7 @@ def on_closing():
 
 f2=open("MyFiles/credentials.txt","r")
 cont=f2.read()
-print(cont)
+
 if cont=="":
     root=tk.Tk()
     root.protocol("WM_DELETE_WINDOW", on_closing)

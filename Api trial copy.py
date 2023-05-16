@@ -5,15 +5,16 @@ from io import BytesIO
 
 # Set the API endpoint URL and parameters
 url2 = "https://newsapi.org/v2/top-headlines"
-url="https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=a08812eb06cb461197c118b8555a3dd0"
+url="https://newsapi.org/v2/top-headlines?country=in?category=business&apiKey=a08812eb06cb461197c118b8555a3dd0"
+url3="https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=a08812eb06cb461197c118b8555a3dd0"
 params = {
     "country": "us",
-    "categories":"sports",
+    "categories":"business",
     "apiKey": "a08812eb06cb461197c118b8555a3dd0"
 }
 
 # Make the API request and get the response
-response = requests.get(url)
+response = requests.get(url3)
 
 # Check if the request was successful
 if response.status_code == 200:
@@ -22,6 +23,7 @@ if response.status_code == 200:
     
     # Loop through the articles and print the titles and images
     for article in articles:
+        #print(article)
         title = article["title"]
         image_url = article["urlToImage"]
         

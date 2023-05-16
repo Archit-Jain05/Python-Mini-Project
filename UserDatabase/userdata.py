@@ -77,4 +77,15 @@ def updateuser(username,password,age,country,opt):
     conn.commit()
     print("User updated")
 
+def getpassw(username):
+   print(username)
+   cur.execute("SELECT pass FROM users WHERE `username`='"+username+"';")
+   row=cur.fetchmany()
+   if row==None or row==[]:
+      return "password not retrievable"
+   else: 
+      return row[0][0]
+   
+
 conn.commit()
+
