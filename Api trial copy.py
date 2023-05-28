@@ -6,7 +6,7 @@ from io import BytesIO
 # Set the API endpoint URL and parameters
 url2 = "https://newsapi.org/v2/top-headlines"
 url="https://newsapi.org/v2/top-headlines?country=in?category=business&apiKey=a08812eb06cb461197c118b8555a3dd0"
-url3="https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=a08812eb06cb461197c118b8555a3dd0"
+url3="https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=a08812eb06cb461197c118b8555a3dd0"
 params = {
     "country": "us",
     "categories":"business",
